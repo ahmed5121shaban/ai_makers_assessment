@@ -33,7 +33,7 @@ A mini HR system built with ASP.NET Core MVC, Entity Framework Core, and SQL Ser
 
 1. Clone the repo:
    ```
-   git clone https://github.com/....
+   git clone https://github.com/ahmed5121shaban/ai_makers_assessment.git
    ```
 2. Navigate to the project:
    ```
