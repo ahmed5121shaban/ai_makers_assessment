@@ -1,0 +1,73 @@
+@model EmployeeViewModel
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<div class="page-header">
+    <h1><i class="bi bi-person-vcard me-2"></i>Employee Details</h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>Back to List
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-4 mb-4 pb-3 border-bottom">
+            <div class="avatar-circle">
+                @(Model.FullName?.Split(' ').Select(n => n[0]).Take(2).Aggregate("", (a, b) => a + b).ToUpper() ?? "?")
+            </div>
+            <div>
+                <h4 class="fw-bold mb-1">@Model.FullName</h4>
+                <div class="d-flex gap-2 align-items-center">
+                    @if (Model.IsActive)
+                    {
+                        <span class="badge badge-active">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-inactive">Inactive</span>
+                    }
+                    <span class="badge badge-department">@Model.DepartmentName</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <div class="detail-label">Email</div>
+                    <div class="detail-value">
+                        <i class="bi bi-envelope text-muted me-1"></i>@Model.Email
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="detail-label">Mobile Number</div>
+                    <div class="detail-value">
+                        <i class="bi bi-phone text-muted me-1"></i>@Model.MobileNumber
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <div class="detail-label">Job Title</div>
+                    <div class="detail-value">
+                        <i class="bi bi-briefcase text-muted me-1"></i>@Model.JobTitle
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="detail-label">Hire Date</div>
+                    <div class="detail-value">
+                        <i class="bi bi-calendar text-muted me-1"></i>@Model.HireDate.ToString("yyyy-MM-dd")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-top">
+            <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary px-4">
+                <i class="bi bi-pencil me-1"></i>Edit
+            </a>
+            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Back to List</a>
+        </div>
+    </div>
+</div>
